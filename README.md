@@ -3,7 +3,7 @@
 ## Roster
 - William Li (PM)
 - Cody Wong
-- Alexandru C.
+- Alexandru Cimpoiesu
 - James Sun
 ---
 
