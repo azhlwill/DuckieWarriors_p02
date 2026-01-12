@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+  Duck Sweeper // Duckie_Warriors
+  Roster: William Li, James Sun, Cody Wong, Alexandru Cimpionescu
+  SoftDev
+ -->
+
+<html>
+    <head>
+        <title>Duck Sweeper</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="../static/app.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+
+        <style>
+            .button{
+                color: black;
+                background: white;
+                padding: 10px 12px;
+                border-radius: 8px;
+                border: grey
+            }
+
+            .button1:hover{
+                background-color: grey;
+                background: white;
+                color: white;
+            }
+        </style>
+
+        <div>
+            <nav class="top-bar topbar-responsive">
+                <div class="top-bar-title">
+                <a class="topbar-responsive-logo megrim-regular" href="{{url_for('index_get')}}"><strong>Duck Sweeper</strong></a>
+                    </div>
+                    <div id="topbar-responsive" class="topbar-responsive-links">
+                    <div class="top-bar-right">
+                        <ul class="menu simple vertical medium-horizontal">
+                            {% if "username" not in session.keys() %}
+                                <li>
+                                    <a href="{{url_for('login_get')}}"><button type="button" class="button hollow topbar-responsive-button">Log In</button></a>
+                                </li>
+                                <li>
+                                    <a href="{{url_for('register_get')}}"><button type="button" class="button hollow topbar-responsive-button">Create Account </button></a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="{{url_for('settings_get')}}"><button type="button" class="button hollow topbar-responsive-button">Settings</button></a>
+                                </li>
+                                <li>
+                                    <a href="{{url_for('logout_get')}}"><button type="button" class="button hollow topbar-responsive-button">Log Out</button></a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </head>
+
+
+    <body style="background-color: transparent; color:white;">
+        <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for category, message in messages %}
+                    <div data-closable class="alert-box callout {{ category }}">
+                      <i class="fa fa-ban"></i> {{ message }}
+                        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                        <span aria-hidden="true">&CircleTimes;</span>
+                      </button>
+                    </div>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
+</html>

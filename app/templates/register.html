@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+  Duck Sweeper // Duckie_Warriors
+  Roster: William Li, James Sun, Cody Wong, Alexandru Cimpionescu
+  SoftDev
+ -->
+
+{% extends "template.html" %}
+
+{% block content %}
+
+<html style = "background-image: url(../static/art/background.gif); image-rendering: pixelated;">
+  <div style="align:center; margin:20px; text-align:center;">
+    <div class = "body">
+      <h3> Create new account </h3>
+      <hr>
+
+      <div class = "credentials" style="align:center; margin-left: 20%; margin-right: 20%;">
+        <form action="/register", method="POST">
+        <p><strong>New username<strong></p>
+        <input type="text" name="username" placeholder="Username" required title="CASE SENSITIVE!">
+        <br>
+        <p><strong>Password<strong></p>
+        <input type="password" name="password" placeholder="Password" required title="CASE SENSITIVE!">
+        <p></p>
+        <button class="button button1" type="submit" title="Register?">Register Account</button>
+      </form>
+      </div>
+    </div>
+
+    <hr>
+      <div class = "footer">
+        <p>
+          <br> Already have an account?<a href= "{{ url_for('login_get')}}"> Login</a> to your account!<br>
+        </p>
+      </div>
+    <p>
+      Return to <a href= "{{ url_for('index_get')}}"> homepage</a><br>
+    </p>
+  </div>
+
+{% endblock %}
