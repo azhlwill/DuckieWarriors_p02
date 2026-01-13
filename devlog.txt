@@ -1,8 +1,12 @@
-williamL -- 2025-1-11 22:00
+williamL -- 2025-1-11 10:30
   - Initial design doc planning
   - Procured 3x hardcopies of design doc to be submitted next class
   - Created skeleton for project
 
-codyW -- 2025-1-13 20:00
+jamesS -- 2025-1-12 10:45
+  - added HTML for template and register
+
+codyW -- 2025-1-13 10:55
 - Implemented mine sweeper with javascript. Working.
+
 
