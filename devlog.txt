@@ -9,4 +9,10 @@ jamesS -- 2025-1-12 10:45
 codyW -- 2025-1-13 10:55
 - Implemented mine sweeper with javascript. Working.
 
+codyW -- 2025-1-14 2:16
+- Create a home.html page connected with game.html page
+- Connected game.html with minesweeper.js 
+- Hard coded some "real" recipies in the Sqlite database(3 of them)
+- Implemented/Added build_db.py with __init__.py
+- MVP completed(overall) 
 
