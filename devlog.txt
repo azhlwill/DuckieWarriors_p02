@@ -16,3 +16,9 @@ codyW -- 2025-1-14 2:16
 - Implemented/Added build_db.py with __init__.py
 - MVP completed(overall) 
 
+williamL -- 2025-1-11 10:30
+  - Updated files with new code
+  - Fixed minesweeper game
+  - Added more recipes
+  - Fixed up some styling
+
