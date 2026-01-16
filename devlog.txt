@@ -9,25 +9,29 @@ jamesS -- 2025-1-12 10:45
 codyW -- 2025-1-13 10:55
 - Implemented mine sweeper with javascript. Working.
 
-codyW -- 2025-1-14 2:16
+codyW -- 2025-1-16 2:16
 - Create a home.html page connected with game.html page
 - Connected game.html with minesweeper.js 
 - Hard coded some "real" recipies in the Sqlite database(3 of them)
 - Implemented/Added build_db.py with __init__.py
 - MVP completed(overall) 
 
-williamL -- 2025-1-14 2:18
+williamL -- 2025-1-16 2:18
   - Updated files with new code
   - Fixed minesweeper game
   - Added more recipes
   - Fixed up some styling
 
-codyW -- 2025-1-14 2:18 
+codyW -- 2025-1-16 2:18 
 - Reformated all the mermaid maps(i.e site map, component map, database schema)
 - "Redistribuited" the work regarding Alex is confirmed to be gone.
 - Helped rework the code that William Commited, making sure everything matched.
 - Design Document completely up to date with full requirements from 36-P02
 
-williamL -- 2025-1-14 2:31
+williamL -- 2025-1-16 2:31
   - Fixed requirements.txt
   - Updated readme
+
+williamL -- 2025-16 3:23
+  - Updated readme
+  - Submitted video link to form
