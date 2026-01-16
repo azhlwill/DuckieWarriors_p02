@@ -31,12 +31,12 @@ git clone git@github.com:azhlwill/DuckieWarriors_p02.git
 cd DuckieWarriors_p02
 
 mac/linux
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv venv_name
+source venv_name/bin/activate
 
 windows
-python -m venv venv
-venv\Scripts\activate
+python -m venv venv_name
+venv_name\Scripts\activate
 
 install requirements
 pip install -r requirements.txt
