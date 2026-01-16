@@ -1,6 +1,5 @@
 // TNPG: DuckieWarriors
 // Roster: Cody, James, William
-// Description: Minesweeper game logic
 
 const grid = document.getElementById("gameBoard");
 const rows = 8;
@@ -11,26 +10,33 @@ let board = [];
 function initGame() {
     grid.innerHTML = "";
     board = [];
+
     for (let r = 0; r < rows; r++) {
         let row = [];
         for (let c = 0; c < cols; c++) {
-            row.push({ isMine: false, revealed: false, neighborCount: 0 });
+            row.push({
+                mine: false,
+                revealed: false,
+                flagged: false,
+                count: 0
+            });
         }
         board.push(row);
     }
+
     placeMines();
     countNeighbors();
     drawGrid();
 }
 
 function placeMines() {
-    let mines = 0;
-    while (mines < totalMines) {
+    let placed = 0;
+    while (placed < totalMines) {
         let r = Math.floor(Math.random() * rows);
         let c = Math.floor(Math.random() * cols);
-        if (!board[r][c].isMine) {
-            board[r][c].isMine = true;
-            mines++;
+        if (!board[r][c].mine) {
+            board[r][c].mine = true;
+            placed++;
         }
     }
 }
@@ -38,66 +44,97 @@ function placeMines() {
 function countNeighbors() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-            if (board[r][c].isMine) continue;
+            if (board[r][c].mine) continue;
             let count = 0;
             for (let i = -1; i <= 1; i++) {
                 for (let j = -1; j <= 1; j++) {
                     let nr = r + i, nc = c + j;
-                    if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && board[nr][nc].isMine) count++;
+                    if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
+                        if (board[nr][nc].mine) count++;
+                    }
                 }
             }
-            board[r][c].neighborCount = count;
+            board[r][c].count = count;
         }
     }
 }
 
 function clickCell(r, c) {
-    if (r < 0 || r >= rows || c < 0 || c >= cols || board[r][c].revealed) return;
-    const cell = board[r][c];
-    cell.revealed = true;
-    const cellDiv = document.getElementById(`cell-${r}-${c}`);
-    cellDiv.classList.add("bg-orange-100");
+    if (r < 0 || c < 0 || r >= rows || c >= cols) return;
+    if (board[r][c].revealed || board[r][c].flagged) return;
 
-    if (cell.isMine) {
-        cellDiv.classList.add("bg-red-500");
-        cellDiv.innerText = "💣";
-        alert("Burnt the food! (Game Over)");
+    board[r][c].revealed = true;
+    const cell = document.getElementById(`cell-${r}-${c}`);
+    cell.classList.add("bg-orange-100");
+
+    if (board[r][c].mine) {
+        cell.textContent = "X";
+        alert("Game Over!");
         initGame();
+        return;
+    }
+
+    if (board[r][c].count > 0) {
+        cell.textContent = board[r][c].count;
     } else {
-        if (cell.neighborCount > 0) {
-            cellDiv.innerText = cell.neighborCount;
-            cellDiv.classList.add("text-orange-800", "font-bold");
-        } else {
-            for (let i = -1; i <= 1; i++) {
-                for (let j = -1; j <= 1; j++) clickCell(r + i, c + j);
+        for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+                clickCell(r + i, c + j);
             }
         }
-        checkWin();
+    }
+
+    checkWin();
+}
+
+function toggleFlag(r, c) {
+    if (board[r][c].revealed) return;
+
+    const cell = board[r][c];
+    const cellDiv = document.getElementById(`cell-${r}-${c}`);
+
+    cell.flagged = !cell.flagged;
+
+    if (cell.flagged) {
+        cellDiv.textContent = "F";
+        cellDiv.classList.add("bg-yellow-200", "font-bold");
+    } else {
+        cellDiv.textContent = "";
+        cellDiv.classList.remove("bg-yellow-200", "font-bold");
     }
 }
 
 function checkWin() {
-    let revealedCount = 0;
+    let revealed = 0;
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-            if (board[r][c].revealed) revealedCount++;
+            if (board[r][c].revealed) revealed++;
         }
     }
-    if (revealedCount === (rows * cols) - totalMines) {
-        alert("Kitchen Cleaned! Unlocking Recipe...");
-        window.location.href = "/unlock_recipe"; 
+
+    if (revealed === rows * cols - totalMines) {
+        window.location.href = "/unlock_recipe";
     }
 }
 
 function drawGrid() {
     for (let r = 0; r < rows; r++) {
         const rowDiv = document.createElement("div");
-        rowDiv.className = "flex justify-center";
+        rowDiv.className = "flex";
+
         for (let c = 0; c < cols; c++) {
             const cell = document.createElement("div");
             cell.id = `cell-${r}-${c}`;
-            cell.className = "w-12 h-12 border border-orange-300 bg-white flex items-center justify-center cursor-pointer hover:bg-orange-50 text-lg transition-colors duration-200";
-            cell.addEventListener("click", () => clickCell(r, c));
+            cell.className =
+                "w-12 h-12 border flex items-center justify-center cursor-pointer select-none";
+
+            cell.onclick = () => clickCell(r, c);
+
+            cell.oncontextmenu = (e) => {
+                e.preventDefault();
+                toggleFlag(r, c);
+            };
+
             rowDiv.appendChild(cell);
         }
         grid.appendChild(rowDiv);

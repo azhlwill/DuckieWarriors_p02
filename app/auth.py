@@ -2,42 +2,41 @@
 # Roster: Cody, James, William
 
 import sqlite3
+import os
 
-DB_FILE = "database.db"
+BASE_DIR = os.path.dirname(__file__)
+DB_FILE = os.path.join(BASE_DIR, "database.db")
+
 
 def login(username, password):
-    """
-    Checks if the username and password match a record in the database.
-    Returns True if valid, False otherwise.
-    """
-    try:
-        with sqlite3.connect(DB_FILE) as db:
-            c = db.cursor()
-            c.execute("SELECT password FROM users WHERE username = ?", (username,))
-            result = c.fetchone()
-            
-            if result and result[0] == password:
-                return True
-            return False
-    except sqlite3.Error as e:
-        print(f"Database error: {e}")
-        return False
+    with sqlite3.connect(DB_FILE) as db:
+        c = db.cursor()
+        c.execute(
+            "SELECT password FROM users WHERE username = ?",
+            (username,)
+        )
+        row = c.fetchone()
+        return row is not None and row[0] == password
+
 
 def register(username, password):
-    """
-    Attempts to add a new user.
-    Returns 'Registered' on success, or an error message on failure.
-    """
-    try:
-        with sqlite3.connect(DB_FILE) as db:
-            c = db.cursor()
+    if not username or not password:
+        return "Missing username or password"
 
-            c.execute("SELECT username FROM users WHERE username = ?", (username,))
-            if c.fetchone():
-                return "Username taken"
-            
-            c.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
-            db.commit()
-            return "Registered"
-    except sqlite3.Error:
-        return "Database Error"
+    with sqlite3.connect(DB_FILE) as db:
+        c = db.cursor()
+
+        c.execute(
+            "SELECT 1 FROM users WHERE username = ?",
+            (username,)
+        )
+        if c.fetchone():
+            return "Username already exists"
+
+        c.execute(
+            "INSERT INTO users VALUES (?, ?)",
+            (username, password)
+        )
+        db.commit()
+
+    return "Registered"

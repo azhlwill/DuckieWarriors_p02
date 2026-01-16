@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ user }}'s Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-8">
+
+    <h1 class="text-2xl font-bold mb-6">{{ user }}'s Unlocked Recipes</h1>
+
+    {% if recipes %}
+        <div class="grid gap-4">
+            {% for r in recipes %}
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-bold">{{ r[0] }}</h2>
+                    <p class="text-sm"><b>Ingredients:</b> {{ r[1] }}</p>
+                    <p class="text-sm mt-1"><b>Instructions:</b> {{ r[2] }}</p>
+                    <p class="text-xs text-gray-500 mt-1">Calories: {{ r[3] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No recipes unlocked yet.</p>
+    {% endif %}
+
+    <div class="mt-6">
+        <a href="/game" class="text-blue-600 underline mr-4">Back to Game</a>
+        <a href="/logout" class="text-red-600 underline">Logout</a>
+    </div>
+
+</body>
+</html>
