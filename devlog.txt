@@ -22,8 +22,12 @@ williamL -- 2025-1-14 2:18
   - Added more recipes
   - Fixed up some styling
 
-odyW -- 2025-1-14 2:18 
+codyW -- 2025-1-14 2:18 
 - Reformated all the mermaid maps(i.e site map, component map, database schema)
 - "Redistribuited" the work regarding Alex is confirmed to be gone.
 - Helped rework the code that William Commited, making sure everything matched.
 - Design Document completely up to date with full requirements from 36-P02
+
+williamL -- 2025-1-14 2:31
+  - Fixed requirements.txt
+  - Updated readme
