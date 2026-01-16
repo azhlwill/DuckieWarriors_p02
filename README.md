@@ -31,18 +31,18 @@ git clone <your-repo-link-here>
 cd DuckieWarriors_p02
 
 ### Virtual environment setup
-python3 -m venv venv
-source venv/bin/activate
+- python3 -m venv venv
+- source venv/bin/activate
 
 ### Windows
-venv\Scripts\activate
+ venv\Scripts\activate
 
 ### Install requirements
-pip install -r requirements.txt
+ pip install -r requirements.txt
 
 ### Run app
 cd app
-python3 __init__.py
+- python3 __init__.py
 
 ### Open link
 http://127.0.0.1:5000
