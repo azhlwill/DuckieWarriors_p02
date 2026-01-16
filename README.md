@@ -1,4 +1,4 @@
-# Kitchen Sweeper by DuckieWarriors
+# Duck/Kitchen Sweeper by DuckieWarriors
 
 ## ROSTER
 - William Li (PM)
@@ -9,7 +9,7 @@
 ---
 
 ## DESCRIPTION
-Kitchen Sweeper is a web-based Minesweeper-style game with a culinary theme. Users can register for an account, log in, and play a grid-based Minesweeper game. Successfully clearing the board unlocks a random recipe.
+Duck/Kitchen Sweeper is a web-based Minesweeper-style game with a culinary theme. Users can register for an account, log in, and play a grid-based Minesweeper game. Successfully clearing the board unlocks a random recipe.
 
 Unlocked recipes are permanently saved to the user’s profile and persist across sessions. Users can view all collected recipes on their profile page. The project demonstrates user authentication, database persistence, game logic, and dynamic page rendering using Flask and SQLite.
 
