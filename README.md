@@ -27,7 +27,7 @@ A developer shortcut is included to instantly unlock recipes for testing purpose
 
 ## Clone the repository
 ```bash
-git clone <your-repo-link-here>
+git clone git@github.com:azhlwill/DuckieWarriors_p02.git
 cd DuckieWarriors_p02
 
 mac/linux
