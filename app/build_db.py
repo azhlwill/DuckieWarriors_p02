@@ -1,6 +1,5 @@
 # TNPG: DuckieWarriors
 # Roster: Cody, James, William
-# Description: Database setup and seeding
 
 import sqlite3
 
@@ -10,12 +9,11 @@ def create_tables():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     
-    # Drop existing tables to reset
     c.execute("DROP TABLE IF EXISTS favorites")
     c.execute("DROP TABLE IF EXISTS recipes")
     c.execute("DROP TABLE IF EXISTS users")
 
-    # USERS TABLE
+    #users
     c.execute("""
         CREATE TABLE users (
             username TEXT PRIMARY KEY,
@@ -23,7 +21,7 @@ def create_tables():
         )
     """)
 
-    # RECIPES TABLE
+    #recipes
     c.execute("""
         CREATE TABLE recipes (
             recipe_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,7 +34,7 @@ def create_tables():
         )
     """)
 
-    # FAVORITES TABLE
+    #favorites
     c.execute("""
         CREATE TABLE favorites (
             username TEXT,
@@ -46,7 +44,7 @@ def create_tables():
         )
     """)
 
-    # SEED DATA
+    #seed
     seed_recipes(c)
 
     db.commit()

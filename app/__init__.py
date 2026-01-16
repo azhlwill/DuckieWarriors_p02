@@ -1,5 +1,5 @@
 # TNPG: DuckieWarriors
-# Roster: Cody, James, William, Alex
+# Roster: Cody, James, William
 
 from flask import Flask, render_template, request, session, redirect, url_for
 import sqlite3
