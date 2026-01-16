@@ -25,25 +25,25 @@ A developer shortcut is included to instantly unlock recipes for testing purpose
 
 ---
 
-### Clone the repository
-
+## Clone the repository
+```bash
 git clone <your-repo-link-here>
 cd DuckieWarriors_p02
 
-### Virtual environment setup
-- python3 -m venv venv
-- source venv/bin/activate
+mac/linux
+python3 -m venv venv
+source venv/bin/activate
 
-### Windows
- venv\Scripts\activate
+windows
+python -m venv venv
+venv\Scripts\activate
 
-### Install requirements
- pip install -r requirements.txt
+install requirements
+pip install -r requirements.txt
 
-### Run app
+run app
 cd app
-- python3 __init__.py
+python3 __init__.py
 
-### Open link
+open link
 http://127.0.0.1:5000
-
